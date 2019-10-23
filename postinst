@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e;
+echo "RUNNING POSTINST";
+echo "CREATING SYMLINKS";
+ln -nsf /opt/TestDrive/testdrive /usr/local/bin/testdrive;
