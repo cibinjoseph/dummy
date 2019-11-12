@@ -9,13 +9,10 @@ matrix:
     - os: linux
       dist: bionic
       compiler: gfortran
-script:
-  - mkdir build;
-  # Debian package
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-     cd $TRAVIS_BUILD_DIR/build;
-     cmake -DCMAKE_BUILD_TYPE=Release ..;
-     make package;
-     DEBFILE=$TRAVIS_BUILD_DIR/build/*.deb;
-     ls $DEBFILE && echo "DEB CREATION SUCCESSFUL" || echo "DEB CREATION FAILED";
-    fi
+      script:
+        - mkdir build;
+        - cd $TRAVIS_BUILD_DIR/build;
+        - cmake -DCMAKE_BUILD_TYPE=Release ..;
+        - make package;
+        - DEBFILE=$TRAVIS_BUILD_DIR/build/*.deb;
+        - ls $DEBFILE && echo "DEB CREATION SUCCESSFUL" || echo "DEB CREATION FAILED";
