@@ -9,10 +9,14 @@ matrix:
     - os: linux
       dist: bionic
       compiler: gfortran
-      script:
-        - mkdir build;
-        - cd $TRAVIS_BUILD_DIR/build;
-        - cmake -DCMAKE_BUILD_TYPE=Release ..;
-        - make package;
-        - DEBFILE=$TRAVIS_BUILD_DIR/build/*.deb;
-        - ls $DEBFILE && echo "DEB CREATION SUCCESSFUL" || echo "DEB CREATION FAILED";
+addons:
+  apt:
+    packages:
+      - gfortran
+script:
+  - mkdir build;
+  - cd $TRAVIS_BUILD_DIR/build;
+  - cmake -DCMAKE_BUILD_TYPE=Release ..;
+  - make package;
+  - DEBFILE=$TRAVIS_BUILD_DIR/build/*.deb;
+  - ls $DEBFILE && echo "DEB CREATION SUCCESSFUL" || echo "DEB CREATION FAILED";
